@@ -7,7 +7,7 @@
 <script>
   import OktaSignIn from '@okta/okta-signin-widget'
   import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css'
-  import config from '../config'
+  import config from '../config.dev'
   export default {
     name: 'Login',
     data: function() {
@@ -20,7 +20,7 @@
     },
     mounted: function () {
       localStorage.setItem('referrerPath', this.fromUri);
-      
+
       this.$nextTick(function () {
         this.widget = new OktaSignIn({
           /**
@@ -65,9 +65,9 @@
               "id": "0oa1cax8m3qhLm2sW357"
             },
             {
-              type: 'FACEBOOK', 
+              type: 'FACEBOOK',
               id: '0oa1eakunzp6tOdz5357'
-            } 
+            }
           ],
         })
         this.widget.renderEl(

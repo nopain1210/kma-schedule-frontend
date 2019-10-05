@@ -77,7 +77,7 @@
       </v-card-text>
       <v-card-actions>
         <div class="flex-grow-1"></div>
-        <v-btn class="mb-2" outlined color="teal">
+        <v-btn class="mb-2" outlined color="teal" @click.stop="getExcel">
           <v-icon left>mdi-file-excel-outline</v-icon>
           Xuất ra bảng Excel
         </v-btn>
@@ -95,6 +95,7 @@
 
 <script>
   import api from '../../../utils/api'
+  import axios from 'axios';
 
   const typeOptions = {
     day: 0,
@@ -128,9 +129,33 @@
       this.fetchData()
     },
     methods: {
+      async getExcel () {
+        // api.get("/api/schedule/excel")
+        //   .then(response => {
+        //     console.log(response)
+        //   })
+        const accessToken = await this.$auth.getAccessToken();
+
+        axios({
+          url: "https://ks.nopain.codes/api/schedule/excel",
+          method: "GET",
+          responseType: 'blob',
+          headers: {
+            Authorization: `Bearer ${accessToken}`
+          },
+        }).then(response => {
+          const fileURL = window.URL.createObjectURL(new Blob([response.data]));
+          const fileLink = document.createElement('a');
+          fileLink.href = fileURL;
+          fileLink.setAttribute('download', 'ks-schedule.xlsx');
+          document.body.appendChild(fileLink);
+
+          fileLink.click();
+        })
+      },
       fetchData() {
         this.loading = true;
-        api.get("api/schedule/dashboard")
+        api.get("/api/schedule/dashboard")
           .then(response => {
             if (response.status === 204) {
               this.$router.push("/first-login")

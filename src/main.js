@@ -8,7 +8,7 @@ import { sync } from 'vuex-router-sync'
 import VueLogger from 'vuejs-logger';
 import Chat from 'vue-beautiful-chat'
 
-import config from './config'
+import config from './config.dev'
 
 sync(store, router)
 
