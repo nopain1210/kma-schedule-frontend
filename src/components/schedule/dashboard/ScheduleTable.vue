@@ -137,7 +137,8 @@
         const accessToken = await this.$auth.getAccessToken();
 
         axios({
-          url: "https://ks.nopain.codes/api/schedule/excel",
+          url: "https://ks.nopain.codes/schedule/excel",
+
           method: "GET",
           responseType: 'blob',
           headers: {
