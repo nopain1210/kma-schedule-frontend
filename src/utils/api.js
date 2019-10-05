@@ -1,5 +1,5 @@
 import axios from 'axios';
-import config from "../config.dev";
+import config from "../config";
 import Vue from 'vue'
 
 const SERVER_URL = config.resourceServer;
