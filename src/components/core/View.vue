@@ -14,8 +14,9 @@
 
     metaInfo () {
       return {
-        title: 'Vue Material Dashboard by CreativeTim'
+        title: 'KMA Schedule'
       }
     }
   }
 </script>
+

@@ -11,27 +11,33 @@ import Vue from 'vue'
 import VueAnalytics from 'vue-analytics'
 import Router from 'vue-router'
 import Meta from 'vue-meta'
+import Auth from '@okta/okta-vue'
 
 // Routes
 import paths from './paths'
+import config from '../config'
 
-function route (path, view, name) {
+function route (path, view, name, meta) {
+
   return {
     name: name || view,
     path,
     component: (resovle) => import(
       `@/views/${view}.vue`
-    ).then(resovle)
+    ).then(resovle),
+    meta
   }
 }
 
 Vue.use(Router)
+Vue.use(Auth, config.oidc)
 
 // Create a new router
 const router = new Router({
   mode: 'history',
-  routes: paths.map(path => route(path.path, path.view, path.name)).concat([
-    { path: '*', redirect: '/' }
+  routes: paths.map(path => route(path.path, path.view, path.name, path.meta)).concat([
+    { path: '*', redirect: '/' },
+    { path: '/implicit/callback', component: Auth.handleCallback() },
   ]),
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {
@@ -58,5 +64,16 @@ if (process.env.GOOGLE_ANALYTICS) {
     }
   })
 }
+
+const onAuthRequired = async (from, to, next) => {
+  if (from.matched.some(record => record.meta.requiresAuth) && !(await Vue.prototype.$auth.isAuthenticated())) {
+    // Navigate to custom login page
+    next({ path: '/login' })
+  } else {
+    next()
+  }
+}
+
+router.beforeEach(onAuthRequired)
 
 export default router

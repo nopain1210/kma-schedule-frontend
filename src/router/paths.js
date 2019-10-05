@@ -6,38 +6,51 @@
 export default [
   {
     path: '',
+    name: 'Thời khóa biểu',
     // Relative to /src/views
-    view: 'Dashboard'
+    view: 'Dashboard',
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/user-profile',
-    name: 'User Profile',
-    view: 'UserProfile'
+    name: 'Lịch học',
+    view: 'UserProfile',
+    meta: {
+      requiresAuth: true
+    }
   },
   {
-    path: '/table-list',
-    name: 'Table List',
-    view: 'TableList'
+    path: '/user-settings',
+    name: 'Thiết lập',
+    view: 'UserSettings',
+    meta: {
+      requiresAuth: true
+    }
   },
   {
-    path: '/typography',
-    view: 'Typography'
+    path: '/chat',
+    name: 'Chat bot',
+    view: 'Chat',
+    meta: {
+      requiresAuth: true
+    }
   },
   {
-    path: '/icons',
-    view: 'Icons'
+    path: '/login',
+    name: 'Đăng nhập ',
+    view: 'Login',
+    meta: {
+      requiresAuth: false
+    }
   },
   {
-    path: '/maps',
-    view: 'Maps'
-  },
-  {
-    path: '/notifications',
-    view: 'Notifications'
-  },
-  {
-    path: '/upgrade',
-    name: 'Upgrade to PRO',
-    view: 'Upgrade'
+    path: '/first-login',
+    name: 'First Login',
+    view: 'FirstLogin',
+    meta: {
+      requiresAuth: false
+    }
   }
 ]

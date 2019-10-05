@@ -5,10 +5,17 @@ import store from './store'
 import './plugins'
 import vuetify from './plugins/vuetify'
 import { sync } from 'vuex-router-sync'
+import VueLogger from 'vuejs-logger';
+import Chat from 'vue-beautiful-chat'
+
+import config from './config'
 
 sync(store, router)
 
 Vue.config.productionTip = false
+
+Vue.use(VueLogger, config.logger)
+Vue.use(Chat)
 
 new Vue({
   router,

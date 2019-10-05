@@ -26,10 +26,11 @@
           v-else
           class="px-3"
         >
-          <h4
-            class="title font-weight-light mb-2"
-            v-text="title"
-          />
+          <div
+            class="title font-weight-light ml-6 d-flex align-center"
+          >
+            <v-icon class="mb-1 pr-1" left>mdi-account</v-icon> {{title}}
+          </div>
           <p
             class="category font-weight-thin mb-0"
             v-text="text"
