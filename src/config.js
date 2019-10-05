@@ -2,7 +2,7 @@ export default {
   oidc: {
     clientId: '0oa1c61c7tWrnzg0H357',
     issuer: 'https://dev-359998.okta.com/oauth2/default',
-    redirectUri: 'http://localhost:8080/implicit/callback',
+    redirectUri: 'https://ks.nopain.codes/implicit/callback',
     scopes: ['openid', 'profile', 'email'],
     pkce: true,
     testing: {
