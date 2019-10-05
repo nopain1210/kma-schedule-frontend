@@ -7,7 +7,7 @@
 <script>
   import OktaSignIn from '@okta/okta-signin-widget'
   import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css'
-  import config from '../config.dev'
+  import config from '../config'
   export default {
     name: 'Login',
     data: function() {

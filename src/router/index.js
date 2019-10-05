@@ -15,7 +15,7 @@ import Auth from '@okta/okta-vue'
 
 // Routes
 import paths from './paths'
-import config from '../config.dev'
+import config from '../config'
 
 function route (path, view, name, meta) {
 
