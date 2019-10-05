@@ -145,6 +145,8 @@
             Authorization: `Bearer ${accessToken}`
           },
         }).then(response => {
+          console.log(response)
+          console.log(response.data.size)
           const fileURL = window.URL.createObjectURL(new Blob([response.data]));
           const fileLink = document.createElement('a');
           fileLink.href = fileURL;
