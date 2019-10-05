@@ -137,10 +137,9 @@
         const accessToken = await this.$auth.getAccessToken();
 
         axios({
-          url: "https://safe-mesa-21671.herokuapp.com/api/schedule/excel",
+          url: "http://localhost:9000/api/schedule/excel",
 
           method: "GET",
-          responseType: 'blob',
           headers: {
             Authorization: `Bearer ${accessToken}`
           },
