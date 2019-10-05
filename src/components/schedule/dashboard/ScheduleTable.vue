@@ -137,7 +137,7 @@
         const accessToken = await this.$auth.getAccessToken();
 
         axios({
-          url: "https://ks.nopain.codes/api/schedule/excel",
+          url: "https://safe-mesa-21671.herokuapp.com/api/schedule/excel",
 
           method: "GET",
           responseType: 'blob',
