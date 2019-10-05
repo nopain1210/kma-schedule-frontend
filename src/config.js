@@ -9,7 +9,7 @@ export default {
       disableHttpsCheck: false
     }
   },
-  resourceServer: 'http://localhost:9000',
+  resourceServer: 'https://safe-mesa-21671.herokuapp.com',
   logger: {
     isEnabled: true,
     logLevel: 'debug',
