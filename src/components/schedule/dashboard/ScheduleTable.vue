@@ -77,7 +77,7 @@
       </v-card-text>
       <v-card-actions>
         <div class="flex-grow-1"></div>
-        <v-btn class="mb-2" outlined color="teal" @click.stop="getExcel">
+        <v-btn class="mb-2" outlined color="teal" @click.stop="getExcel" :loading="excelLoading">
           <v-icon left>mdi-file-excel-outline</v-icon>
           Xuất ra bảng Excel
         </v-btn>
@@ -105,6 +105,7 @@
 
   export default {
     data: () => ({
+      excelLoading: false,
       loading: true,
       toggleExclusive: 1,
       today: new Date().toISOString().substr(0, 10),
@@ -135,6 +136,7 @@
         //     console.log(response)
         //   })
         const accessToken = await this.$auth.getAccessToken();
+        this.excelLoading = true;
 
         axios({
           url: "https://safe-mesa-21671.herokuapp.com/api/schedule/excel",
@@ -145,16 +147,16 @@
             Authorization: `Bearer ${accessToken}`
           },
         }).then(response => {
-          console.log(response)
-          console.log(response.data.size)
           const fileURL = window.URL.createObjectURL(new Blob([response.data]));
           const fileLink = document.createElement('a');
           fileLink.href = fileURL;
           fileLink.setAttribute('download', 'ks-schedule.xlsx');
           document.body.appendChild(fileLink);
 
-          fileLink.click();
-        })
+          fileLink.click()
+        }).finally (){
+          this.excelLoading = false
+        }
       },
       fetchData() {
         this.loading = true;
