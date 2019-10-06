@@ -154,9 +154,9 @@
           document.body.appendChild(fileLink);
 
           fileLink.click()
-        }).finally (){
+        }).finally(() => {
           this.excelLoading = false
-        }
+        })
       },
       fetchData() {
         this.loading = true;
